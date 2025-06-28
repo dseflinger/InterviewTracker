@@ -44,4 +44,47 @@ export class JobApplicationEffects {
             })
         )
     )
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    deleteApplication = createEffect(() =>
+        this.actions$.pipe(
+            ofType(JobApplicationActions.deleteApplication),
+
+        )
+    )
 }

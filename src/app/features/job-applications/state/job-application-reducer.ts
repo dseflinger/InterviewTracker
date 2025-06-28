@@ -25,5 +25,4 @@ export const jobApplicationReducer = createReducer(
     })),
     on(JobApplicationActions.loadApplicationFailure, state => ({ ...state, loading: false })),
     on(JobApplicationActions.loadApplicationsFalure, state => ({ ...state, loading: false })),
-
 )

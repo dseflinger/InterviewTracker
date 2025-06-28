@@ -1,6 +1,6 @@
 <div class="job-detail-card">
     <div class="job-detail-header">
-        <h2>{{ job$()?.companyName }}</h2>
+        <h2>{{ job()?.companyName }}</h2>
         <div class="job-detail-actions">
             <button pButton type="button" icon="pi pi-pencil" label="{{ editMode() ? 'Cancel' : 'Edit' }}"
                 (click)="onEdit()"></button>
@@ -10,34 +10,31 @@
     </div>
 
     @if(!editMode()){
-    test
     <div class="job-detail-grid">
         <div class="job-detail-row">
             <label>Position:</label>
-            <span>{{ job$()?.position }}</span>
+            <span>{{ job()?.position }}</span>
         </div>
         <div class="job-detail-row">
             <label>Status:</label>
-            <span>{{ job$()?.status }}</span>
+            <span>{{ job()?.status }}</span>
         </div>
         <div class="job-detail-row">
             <label>Remote:</label>
-            <span>{{ job$()?.isRemote ? 'Yes' : 'No' }}</span>
+            <span>{{ job()?.isRemote ? 'Yes' : 'No' }}</span>
         </div>
         <div class="job-detail-row">
             <label>Date Applied:</label>
-            <span>{{ job$()?.dateApplied | date:'mediumDate' }}</span>
+            <span>{{ job()?.dateApplied | date:'mediumDate' }}</span>
         </div>
         <div class="job-detail-notes">
             <label>Notes:</label>
-            <p>{{ job$()?.notes || 'None' }}</p>
+            <p>{{ job()?.notes || 'None' }}</p>
         </div>
     </div>
     }
     @else {
-    <div class="job-detail-row">
-        <label>Position:</label>
-        <input pInputText id="position" formControlName="position" autocomplete="off" />
-    </div>
+    <app-job-application-form [form]="updateForm"></app-job-application-form>
+    <button (click)="onUpdate()">Create</button>
     }
 </div>

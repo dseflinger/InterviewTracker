@@ -21,4 +21,8 @@ export class JobApplicationService {
   public getById(id: string): Observable<JobApplication> {
     return this.http.get<JobApplication>(`${this.baseurl}/${id}`)
   }
+
+  public delete(id: string): Observable<boolean> {
+    return this.http.delete<boolean>(`${this.baseurl}/${id}`)
+  }
 }
