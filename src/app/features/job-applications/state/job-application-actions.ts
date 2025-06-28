@@ -27,7 +27,7 @@ export const JobApplicationActions = createActionGroup({
         'Create Application Failure': props<{ error: string }>(),
 
         'Delete Application': props<{ id: string }>(),
-        'Delete Application Success': props<{ id: string }>(),
+        'Delete Application Success': props<{ isDeleted: boolean }>(),
         'Delete Application Failure': props<{ error: string }>(),
 
         'Select Application': props<{ id: string }>(),

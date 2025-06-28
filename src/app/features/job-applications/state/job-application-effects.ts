@@ -45,46 +45,16 @@ export class JobApplicationEffects {
         )
     )
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     deleteApplication = createEffect(() =>
         this.actions$.pipe(
             ofType(JobApplicationActions.deleteApplication),
-
+            switchMap((action) => {
+                return this.jobApplicationService.delete(action.id)
+                    .pipe(
+                        map((isDeleted) => JobApplicationActions.deleteApplicationSuccess({ isDeleted })),
+                        catchError((error) => of(JobApplicationActions.deleteApplicationFailure({ error })))
+                    )
+            })
         )
     )
 }
