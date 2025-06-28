@@ -31,9 +31,6 @@
             ],
             "styles": [
               "node_modules/primeicons/primeicons.css",
-              // todo see if this can be fixed
-              // "node_modules/@primeng/themes/saga-blue/theme.css",
-              // "node_modules/primeng/resources/primeng.min.css",
               "src/styles.scss"
             ]
           },

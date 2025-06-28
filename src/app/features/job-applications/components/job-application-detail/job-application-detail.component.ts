@@ -5,7 +5,6 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './job-application-detail.component.html',
   styleUrl: './job-application-detail.component.scss',
-  // standalone: true //Todo do i need this?
 })
 export class JobApplicationDetailComponent {
   

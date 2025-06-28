@@ -1,1 +1,36 @@
-<p>create-job-application works!</p>
+<form [formGroup]="createAppForm" (ngSubmit)="onSubmit()">
+    <!-- Company Name -->
+    <p-floatlabel variant="in">
+        <input pInputText id="companyName" formControlName="companyName" autocomplete="off" />
+        <label for="companyName">Company Name</label>
+    </p-floatlabel>
+
+    <!-- Position -->
+    <p-floatlabel variant="in">
+        <input pInputText id="position" formControlName="position" autocomplete="off" />
+        <label for="position">Position</label>
+    </p-floatlabel>
+
+    <!-- Status Dropdown -->
+    <p-floatlabel variant="in">
+        <p-dropdown id="status" [options]="statusOptions" optionLabel="label" formControlName="status"
+            placeholder="Select a status">
+        </p-dropdown>
+        <label for="status">Status</label>
+    </p-floatlabel>
+
+    <!-- Notes Textarea -->
+    <p-floatlabel variant="in">
+        <textarea pInputTextarea id="notes" formControlName="notes" rows="4"></textarea>
+        <label for="notes">Notes</label>
+    </p-floatlabel>
+
+    <!-- Is Remote Dropdown -->
+    <p-floatlabel variant="in">
+        <p-dropdown id="isRemote" [options]="remoteOptions" optionLabel="label" formControlName="isRemote"
+            placeholder="Select an option">
+        </p-dropdown>
+        <label for="isRemote">Remote?</label>
+    </p-floatlabel>
+    <p-button type="submit">Submit</p-button>
+</form>

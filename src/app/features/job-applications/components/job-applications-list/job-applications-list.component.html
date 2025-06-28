@@ -1,4 +1,27 @@
-<p>job-applications-list works!</p>
-<p-table>
-    
+<p-table [value]="applications$()" class="" [resizableColumns]="true" [reorderableColumns]="true" [autoLayout]="true">
+    <ng-template #caption>
+        <div class="caption">
+            <span class="text-xl font-bold">Applications</span>
+        </div>
+    </ng-template>
+    <ng-template #header>
+        <tr>
+            <th>Company</th>
+            <th>Position</th>
+            <th>Status</th>
+            <th>Notes</th>
+            <th>Is Remote?</th>
+            <th>Date Applied</th>
+        </tr>
+    </ng-template>
+    <ng-template #body let-app>
+        <tr>
+            <td>{{ app.companyName }}</td>
+            <td>{{ app.position }}</td>
+            <td>{{ app.status }}</td>
+            <td>{{ app.notes }}</td>
+            <td>{{ app.isRemote }}</td>
+            <td>{{ app.dateApplied | date:'short' }}</td>
+        </tr>
+    </ng-template>
 </p-table>
