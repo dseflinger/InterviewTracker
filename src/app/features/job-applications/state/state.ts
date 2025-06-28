@@ -8,7 +8,7 @@ export interface JobApplication {
     dateApplied: Date;
 }
 
-export interface CreateAppication {
+export interface CreateApplication {
     companyName: string;
     position: string;
     status: Status;
@@ -38,5 +38,4 @@ export interface JobApplicationState {
     jobApplications: JobApplication[];
     selectedApplication: JobApplication | null;
     loading: boolean;
-    error: string | null;
 }

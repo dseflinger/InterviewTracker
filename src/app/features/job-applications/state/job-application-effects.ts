@@ -8,19 +8,38 @@ import { inject, Injectable } from '@angular/core';
 export class JobApplicationEffects {
     private actions$ = inject(Actions);
     private jobApplicationService = inject(JobApplicationService);
-    // constructor(
-    //     private actions$: Actions,
-    //     private jobApplicationService: JobApplicationService
-    // ) { }
 
     loadApplications$ = createEffect(() =>
         this.actions$.pipe(
             ofType(JobApplicationActions.loadApplications),
             switchMap(() => {
-                // return of(JobApplicationActions.loadApplicationsFalure({ error: 'test' }));
                 return this.jobApplicationService.getAll().pipe(
                     map(applications => JobApplicationActions.loadApplicationsSuccess({ applications })),
                     catchError(error => of(JobApplicationActions.loadApplicationsFalure({ error })))
+                )
+            })
+        )
+    )
+
+    createApplication$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(JobApplicationActions.createApplication),
+            switchMap((action) => {
+                return this.jobApplicationService.add(action.createApp).pipe(
+                    map(id => JobApplicationActions.createApplicationSuccess({ id })),
+                    catchError(error => of(JobApplicationActions.createApplicationFailure({ error })))
+                )
+            })
+        )
+    )
+
+    getApplication$ = createEffect(() =>
+        this.actions$.pipe(
+            ofType(JobApplicationActions.loadApplication),
+            switchMap((action) => {
+                return this.jobApplicationService.getById(action.id).pipe(
+                    map(application => JobApplicationActions.loadApplicationSuccess({ application })),
+                    catchError(error => of(JobApplicationActions.loadApplicationFailure({ error })))
                 )
             })
         )

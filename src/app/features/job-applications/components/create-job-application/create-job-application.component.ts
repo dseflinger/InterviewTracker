@@ -6,11 +6,12 @@ import { JobApplicationActions } from '../../state/job-application-actions';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
-import { CreateAppication as CreateApplication, Status } from '../../state/state';
+import { CreateApplication as CreateApplication, Status } from '../../state/state';
+import { JobApplicationFormComponent } from "../job-application-form/job-application-form.component";
 
 @Component({
   selector: 'app-create-job-application',
-  imports: [InputTextModule, FloatLabel, DropdownModule, ReactiveFormsModule, ButtonModule],
+  imports: [InputTextModule , DropdownModule, ReactiveFormsModule, ButtonModule, JobApplicationFormComponent],
   templateUrl: './create-job-application.component.html',
   styleUrl: './create-job-application.component.scss',
   standalone: true
@@ -18,25 +19,12 @@ import { CreateAppication as CreateApplication, Status } from '../../state/state
 export class CreateJobApplicationComponent {
   private _store = inject(Store);
   createAppForm = new FormGroup({
-    companyName: new FormControl<string>('', [Validators.required, Validators.maxLength(20)]),
-    position: new FormControl<string>('', [Validators.required, Validators.maxLength(20)]),
-    status: new FormControl<Status>(Status.Applied, [Validators.required]),
+    companyName: new FormControl<string>('', [Validators.required, Validators.maxLength(30)]),
+    position: new FormControl<string>('', [Validators.required, Validators.maxLength(30)]),
+    status: new FormControl<Status | null>(null, [Validators.required]),
     notes: new FormControl<string>('', [Validators.maxLength(150)]),
     isRemote: new FormControl<boolean>(false, [Validators.required]),
   });
-
-  statusOptions = [
-    { label: 'Applied', value: Status.Applied },
-    { label: 'Interviewing', value: Status.Interviewing },
-    { label: 'Rejected', value: Status.Rejected },
-    { label: 'Offer Received', value: Status.OfferReceived },
-    { label: 'Accepted', value: Status.Accepted }
-  ];
-
-  remoteOptions = [
-    { label: 'Yes', value: true },
-    { label: 'No', value: false }
-  ];
 
 
   onSubmit() {

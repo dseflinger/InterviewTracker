@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
+import { ApplicationConfig, importProvidersFrom, provideBrowserGlobalErrorListeners, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -10,6 +10,13 @@ import { JobApplicationEffects } from './features/job-applications/state/job-app
 import { provideHttpClient } from '@angular/common/http';
 import Aura from '@primeng/themes/aura';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CheckboxModule } from 'primeng/checkbox';
+import { DropdownModule } from 'primeng/dropdown';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { InputTextModule } from 'primeng/inputtext';
+import { TextareaModule } from 'primeng/textarea';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,6 +32,15 @@ export const appConfig: ApplicationConfig = {
     provideStore(),
     provideState({ name: 'jobApplication', reducer: jobApplicationReducer }),
     provideEffects(JobApplicationEffects),
-    provideStoreDevtools()
+    provideStoreDevtools(),
+    provideAnimations(),
+    importProvidersFrom(
+      FloatLabelModule,
+      ReactiveFormsModule,
+      DropdownModule,
+      CheckboxModule,
+      TextareaModule,
+      InputTextModule
+    )
   ]
 };

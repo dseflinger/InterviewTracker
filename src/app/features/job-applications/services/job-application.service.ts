@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { JobApplication } from '../state/state';
+import { CreateApplication, JobApplication } from '../state/state';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,5 +12,13 @@ export class JobApplicationService {
 
   public getAll(): Observable<JobApplication[]> {
     return this.http.get<JobApplication[]>(this.baseurl);
+  }
+
+  public add(createApp: CreateApplication): Observable<string> {
+    return this.http.post<string>(this.baseurl, createApp)
+  }
+
+  public getById(id: string): Observable<JobApplication> {
+    return this.http.get<JobApplication>(`${this.baseurl}/${id}`)
   }
 }
