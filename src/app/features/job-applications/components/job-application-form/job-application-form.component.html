@@ -1,23 +1,23 @@
-<form [formGroup]="form">
-    <p-floatlabel variant="in">
+<form [formGroup]="form" class="job-detail-grid">
+    <!-- <p-floatlabel variant="in" class="job-detail-row">
         <input pInputText id="companyName" formControlName="companyName" autocomplete="off" />
         <label for="companyName">Company Name</label>
-    </p-floatlabel>
+    </p-floatlabel> -->
 
-    <p-floatlabel variant="in">
+    <p-floatlabel variant="in" class="job-detail-row">
         <input pInputText id="position" formControlName="position" autocomplete="off" />
         <label for="position">Position</label>
     </p-floatlabel>
 
     <p-dropdown id="status" [options]="statusOptions" optionLabel="label" optionValue="value" formControlName="status"
-        placeholder="Select a status">
+        class="job-detail-row" placeholder="Select a status">
     </p-dropdown>
 
-    <p-floatlabel variant="in">
+    <p-floatlabel variant="in" class="job-detail-row">
         <textarea pInputTextarea id="notes" formControlName="notes" rows="4"></textarea>
         <label for="notes">Notes</label>
     </p-floatlabel>
 
-    <p-checkbox formControlName="isRemote" binary="true" label="Remote?"></p-checkbox>
+    <p-checkbox formControlName="isRemote" binary="true" label="Remote?" class="job-detail-row"></p-checkbox>
     <label for="isRemote">Remote?</label>
 </form>

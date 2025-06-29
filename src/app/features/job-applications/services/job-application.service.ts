@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { CreateApplication, JobApplication } from '../state/state';
+import { CreateApplication, JobApplication, UpdateApplication } from '../state/state';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -24,5 +24,9 @@ export class JobApplicationService {
 
   public delete(id: string): Observable<boolean> {
     return this.http.delete<boolean>(`${this.baseurl}/${id}`)
+  }
+
+  public update(id: string, updateApp: UpdateApplication): Observable<boolean> {
+    return this.http.put<boolean>(`${this.baseurl}/${id}`, updateApp);
   }
 }

@@ -1,6 +1,20 @@
 <div class="job-detail-card">
     <div class="job-detail-header">
+        @if (!editMode()) {
         <h2>{{ job()?.companyName }}</h2>
+        }
+        @else {
+        <!-- Show companyName input prominently in header when editing -->
+        <!-- <p-floatlabel class="header-input">
+            <input pInputText id="companyName" autocomplete="off" [formControl]="updateForm.controls.companyName" />
+            <label for="companyName">Company Name</label>
+        </p-floatlabel> -->
+        <p-floatlabel variant="in" class="header-input">
+            <input pInputText id="companyName" [formControl]="updateForm.controls.companyName" autocomplete="off" />
+            <label for="companyName">Company Name</label>
+        </p-floatlabel>
+
+        }
         <div class="job-detail-actions">
             <button pButton type="button" icon="pi pi-pencil" label="{{ editMode() ? 'Cancel' : 'Edit' }}"
                 (click)="onEdit()"></button>

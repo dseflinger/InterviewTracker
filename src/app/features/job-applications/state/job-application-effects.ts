@@ -1,12 +1,16 @@
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { JobApplicationService } from "../services/job-application.service";
 import { JobApplicationActions } from "./job-application-actions";
-import { catchError, map, of, switchMap } from "rxjs";
+import { catchError, map, of, switchMap, withLatestFrom } from "rxjs";
 import { inject, Injectable } from '@angular/core';
+import { JobApplication } from "./state";
+import { selectedApplication } from "./job-application-selectors";
+import { Store } from "@ngrx/store";
 
 @Injectable()
 export class JobApplicationEffects {
     private actions$ = inject(Actions);
+    private store = inject(Store);
     private jobApplicationService = inject(JobApplicationService);
 
     loadApplications$ = createEffect(() =>
@@ -54,6 +58,29 @@ export class JobApplicationEffects {
                         map((isDeleted) => JobApplicationActions.deleteApplicationSuccess({ isDeleted })),
                         catchError((error) => of(JobApplicationActions.deleteApplicationFailure({ error })))
                     )
+            })
+        )
+    )
+
+    updateApplication = createEffect(() =>
+        this.actions$.pipe(
+            ofType(JobApplicationActions.updateApplication),
+            withLatestFrom(this.store.select(selectedApplication)),
+            switchMap(([action, currentApp]) => {
+                if (currentApp === null)
+                    return of(JobApplicationActions.updateApplicationFailure({ error: 'no application selected' }));
+
+                var updatedApp = action.updateApp;
+                var updatedApplication: JobApplication = {
+                    ...currentApp,
+                    ...action.updateApp,
+                    dateApplied: currentApp.dateApplied!,
+
+                }
+                return this.jobApplicationService.update(updatedApp.id, updatedApp).pipe(
+                    map(() => JobApplicationActions.updateApplicationSuccess({ updatedApplication })),
+                    catchError((error) => of(JobApplicationActions.updateApplicationFailure({ error })))
+                )
             })
         )
     )

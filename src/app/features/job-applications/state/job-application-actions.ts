@@ -1,7 +1,7 @@
 // actions
 
 import { createAction, createActionGroup, emptyProps, props } from "@ngrx/store";
-import { CreateApplication as CreateApplication, JobApplication, UpdateApplication } from "./state";
+import { CreateApplication, JobApplication, UpdateApplication } from "./state";
 
 // export const loadApplications = createAction('[Job Application] load applications');  // todo maybe add optional props like date, sort? should i try createActionGroup for success?
 
@@ -29,6 +29,11 @@ export const JobApplicationActions = createActionGroup({
         'Delete Application': props<{ id: string }>(),
         'Delete Application Success': props<{ isDeleted: boolean }>(),
         'Delete Application Failure': props<{ error: string }>(),
+
+        'Update Application': props<{ updateApp: UpdateApplication }>(),
+        'Update Application Success': props<{ updatedApplication: JobApplication }>(),
+        'Update Application Failure': props<{ error: string }>(),
+
 
         'Select Application': props<{ id: string }>(),
     }

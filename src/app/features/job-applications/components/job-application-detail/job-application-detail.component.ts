@@ -7,14 +7,16 @@ import { selectedApplication } from '../../state/job-application-selectors';
 import { DatePipe } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { JobApplicationFormComponent } from "../job-application-form/job-application-form.component";
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Status } from '../../state/state';
 import { effect } from '@angular/core';
 import { Actions, ofType } from '@ngrx/effects';
+import { InputTextModule } from 'primeng/inputtext';
+import { FloatLabelModule } from 'primeng/floatlabel';
 
 @Component({
   selector: 'app-job-application-detail',
-  imports: [DatePipe, ButtonModule, JobApplicationFormComponent],
+  imports: [DatePipe, ButtonModule, JobApplicationFormComponent, InputTextModule, ReactiveFormsModule, FloatLabelModule],
   templateUrl: './job-application-detail.component.html',
   styleUrl: './job-application-detail.component.scss',
 })
