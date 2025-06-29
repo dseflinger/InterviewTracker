@@ -39,3 +39,10 @@ export interface JobApplicationState {
     selectedApplication: JobApplication | null;
     loading: boolean;
 }
+
+// TODOS:
+// make form/edit/create page look good
+// fix submit button for create/update
+// make navbar look good
+// make table look better
+// fix status in table to show string

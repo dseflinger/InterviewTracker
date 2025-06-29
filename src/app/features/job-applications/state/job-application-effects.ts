@@ -70,14 +70,15 @@ export class JobApplicationEffects {
                 if (currentApp === null)
                     return of(JobApplicationActions.updateApplicationFailure({ error: 'no application selected' }));
 
-                var updatedApp = action.updateApp;
+                var id = action.id;
+                var updatedApp = { ...action.updateApp, id };
                 var updatedApplication: JobApplication = {
                     ...currentApp,
                     ...action.updateApp,
                     dateApplied: currentApp.dateApplied!,
 
                 }
-                return this.jobApplicationService.update(updatedApp.id, updatedApp).pipe(
+                return this.jobApplicationService.update(id, updatedApp).pipe(
                     map(() => JobApplicationActions.updateApplicationSuccess({ updatedApplication })),
                     catchError((error) => of(JobApplicationActions.updateApplicationFailure({ error })))
                 )

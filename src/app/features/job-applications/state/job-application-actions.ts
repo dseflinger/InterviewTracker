@@ -30,7 +30,7 @@ export const JobApplicationActions = createActionGroup({
         'Delete Application Success': props<{ isDeleted: boolean }>(),
         'Delete Application Failure': props<{ error: string }>(),
 
-        'Update Application': props<{ updateApp: UpdateApplication }>(),
+        'Update Application': props<{ id: string, updateApp: UpdateApplication }>(),
         'Update Application Success': props<{ updatedApplication: JobApplication }>(),
         'Update Application Failure': props<{ error: string }>(),
 

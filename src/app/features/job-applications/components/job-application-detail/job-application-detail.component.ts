@@ -1,14 +1,14 @@
-import { Component, computed, inject, OnInit, signal, Signal } from '@angular/core';
+import { Component, computed, inject, OnDestroy, OnInit, signal, Signal } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { JobApplicationActions } from '../../state/job-application-actions';
 import { ActivatedRoute, Router } from '@angular/router';
-import { take } from 'rxjs';
+import { Subscription, take } from 'rxjs';
 import { selectedApplication } from '../../state/job-application-selectors';
 import { DatePipe } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { JobApplicationFormComponent } from "../job-application-form/job-application-form.component";
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Status } from '../../state/state';
+import { Status, UpdateApplication } from '../../state/state';
 import { effect } from '@angular/core';
 import { Actions, ofType } from '@ngrx/effects';
 import { InputTextModule } from 'primeng/inputtext';
@@ -20,10 +20,11 @@ import { FloatLabelModule } from 'primeng/floatlabel';
   templateUrl: './job-application-detail.component.html',
   styleUrl: './job-application-detail.component.scss',
 })
-export class JobApplicationDetailComponent implements OnInit {
+export class JobApplicationDetailComponent implements OnInit, OnDestroy {
   private _store = inject(Store);
   private _actions = inject(Actions);
   private _router = inject(Router);
+  private _subscriptions: Subscription[] = [];
 
   editMode = signal(false);
   constructor(private _route: ActivatedRoute) { }
@@ -51,6 +52,16 @@ export class JobApplicationDetailComponent implements OnInit {
       take(1)
     )
       .subscribe(() => this._router.navigate(['/applications']));
+
+    var updateSuccessSubscription = this._actions.pipe(
+      ofType(JobApplicationActions.updateApplicationSuccess),
+    )
+      .subscribe(() => this.editMode.set(false));
+    this._subscriptions.push(updateSuccessSubscription);
+  }
+
+  ngOnDestroy(): void {
+    this._subscriptions.forEach(s => s.unsubscribe());
   }
 
   onDelete() {
@@ -64,7 +75,13 @@ export class JobApplicationDetailComponent implements OnInit {
   }
 
   onUpdate() {
-    throw new Error('Method not implemented.');
+    if (this.updateForm.invalid) return;
+
+    const updateApp = this.updateForm.value as UpdateApplication;
+    var id = this.jobId();
+    if (!id) return;
+
+    this._store.dispatch(JobApplicationActions.updateApplication({ id, updateApp }))
   }
 
   patchEffect = effect(() => {

@@ -4,11 +4,6 @@
         <h2>{{ job()?.companyName }}</h2>
         }
         @else {
-        <!-- Show companyName input prominently in header when editing -->
-        <!-- <p-floatlabel class="header-input">
-            <input pInputText id="companyName" autocomplete="off" [formControl]="updateForm.controls.companyName" />
-            <label for="companyName">Company Name</label>
-        </p-floatlabel> -->
         <p-floatlabel variant="in" class="header-input">
             <input pInputText id="companyName" [formControl]="updateForm.controls.companyName" autocomplete="off" />
             <label for="companyName">Company Name</label>
@@ -49,6 +44,6 @@
     }
     @else {
     <app-job-application-form [form]="updateForm"></app-job-application-form>
-    <button (click)="onUpdate()">Create</button>
+    <button pButton type="button" label="Update" class="update-button" (click)="onUpdate()"></button>
     }
 </div>

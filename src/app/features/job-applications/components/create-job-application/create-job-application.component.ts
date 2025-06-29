@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { FloatLabel } from 'primeng/floatlabel';
+import { FloatLabel, FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
 import { JobApplicationActions } from '../../state/job-application-actions';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -11,7 +11,7 @@ import { JobApplicationFormComponent } from "../job-application-form/job-applica
 
 @Component({
   selector: 'app-create-job-application',
-  imports: [InputTextModule , DropdownModule, ReactiveFormsModule, ButtonModule, JobApplicationFormComponent],
+  imports: [InputTextModule, ReactiveFormsModule, ButtonModule, JobApplicationFormComponent, FloatLabelModule],
   templateUrl: './create-job-application.component.html',
   styleUrl: './create-job-application.component.scss',
   standalone: true

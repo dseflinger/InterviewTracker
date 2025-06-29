@@ -1,16 +1,11 @@
 <form [formGroup]="form" class="job-detail-grid">
-    <!-- <p-floatlabel variant="in" class="job-detail-row">
-        <input pInputText id="companyName" formControlName="companyName" autocomplete="off" />
-        <label for="companyName">Company Name</label>
-    </p-floatlabel> -->
-
     <p-floatlabel variant="in" class="job-detail-row">
         <input pInputText id="position" formControlName="position" autocomplete="off" />
         <label for="position">Position</label>
     </p-floatlabel>
 
     <p-dropdown id="status" [options]="statusOptions" optionLabel="label" optionValue="value" formControlName="status"
-        class="job-detail-row" placeholder="Select a status">
+        placeholder="Select a status">
     </p-dropdown>
 
     <p-floatlabel variant="in" class="job-detail-row">
@@ -18,6 +13,8 @@
         <label for="notes">Notes</label>
     </p-floatlabel>
 
-    <p-checkbox formControlName="isRemote" binary="true" label="Remote?" class="job-detail-row"></p-checkbox>
-    <label for="isRemote">Remote?</label>
+    <div class="job-detail-remote">
+        <p-checkbox formControlName="isRemote" binary="true" label="Remote?">Test</p-checkbox>
+        <label for="ingredient1" class="ml-2"> Remote? </label>
+    </div>
 </form>

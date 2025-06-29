@@ -1,2 +1,6 @@
+<p-floatlabel variant="in" class="header-input">
+    <input pInputText id="companyName" [formControl]="createAppForm.controls.companyName" autocomplete="off" />
+    <label for="companyName">Company Name</label>
+</p-floatlabel>
 <app-job-application-form [form]="createAppForm"></app-job-application-form>
 <button (click)="onSubmit()">Create</button>
