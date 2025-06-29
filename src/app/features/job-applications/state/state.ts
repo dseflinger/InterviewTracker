@@ -40,6 +40,14 @@ export interface JobApplicationState {
     loading: boolean;
 }
 
+export const StatusLabels: Record<Status, string> = {
+    [Status.Applied]: 'Applied',
+    [Status.Interviewing]: 'Interviewing',
+    [Status.OfferReceived]: 'Offer Received',
+    [Status.Rejected]: 'Rejected',
+    [Status.Accepted]: 'Accepted'
+};
+
 // TODOS:
 // make form/edit/create page look good
 // fix submit button for create/update

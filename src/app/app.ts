@@ -9,4 +9,8 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 })
 export class App {
   protected title = 'interview-tracker-app';
+  items = [
+    { route: 'applications', label: 'List' },
+    { route: 'applications/create', label: 'Create' }
+  ];
 }

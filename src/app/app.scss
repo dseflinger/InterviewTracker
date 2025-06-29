@@ -1,5 +1,40 @@
-nav {
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+}
+
+.app-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 56px;
+    background-color: #ffffff;
     display: flex;
-    gap: 8px;
-    cursor: pointer;
+    align-items: center;
+    padding: 0 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    gap: 1rem;
+    z-index: 1000;
+
+    a {
+        text-decoration: none;
+        color: #333;
+        font-weight: 500;
+        padding: 8px 12px;
+        border-radius: 4px;
+
+        &:hover {
+            background-color: #f0f0f0;
+        }
+
+        &.active-link {
+            background-color: #e0e0ff;
+        }
+    }
+}
+
+.app-content {
+    margin-top: 56px;
+    padding: 2rem;
 }

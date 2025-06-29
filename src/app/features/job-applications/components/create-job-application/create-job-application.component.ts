@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { FloatLabel, FloatLabelModule } from 'primeng/floatlabel';
 import { InputTextModule } from 'primeng/inputtext';
@@ -8,6 +8,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { CreateApplication as CreateApplication, Status } from '../../state/state';
 import { JobApplicationFormComponent } from "../job-application-form/job-application-form.component";
+import { Actions, ofType } from '@ngrx/effects';
+import { take } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-job-application',
@@ -16,8 +19,11 @@ import { JobApplicationFormComponent } from "../job-application-form/job-applica
   styleUrl: './create-job-application.component.scss',
   standalone: true
 })
-export class CreateJobApplicationComponent {
+export class CreateJobApplicationComponent implements OnInit {
   private _store = inject(Store);
+  private _actions = inject(Actions);
+  private _router = inject(Router)
+
   createAppForm = new FormGroup({
     companyName: new FormControl<string>('', [Validators.required, Validators.maxLength(30)]),
     position: new FormControl<string>('', [Validators.required, Validators.maxLength(30)]),
@@ -39,5 +45,13 @@ export class CreateJobApplicationComponent {
     };
     if (this.createAppForm.valid)
       this._store.dispatch(JobApplicationActions.createApplication({ createApp }));
+  }
+
+  ngOnInit(): void {
+    this._actions.pipe(
+      ofType(JobApplicationActions.createApplicationSuccess),
+      take(1)
+    )
+      .subscribe(() => this._router.navigate(["applications"]));
   }
 }

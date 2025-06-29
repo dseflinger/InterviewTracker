@@ -5,3 +5,7 @@ const featureState = createFeatureSelector<JobApplicationState>("jobApplication"
 
 export const allApplications = createSelector(featureState, s => s.jobApplications);
 export const selectedApplication = createSelector(featureState, s => s.selectedApplication);
+
+export const selectSortedItems = createSelector(allApplications,
+    (s) => [...s]
+);
