@@ -1,7 +1,7 @@
 <div class="table-container">
 
-    <p-table [value]="applications()" [resizableColumns]="true" [reorderableColumns]="true" [autoLayout]="false"
-        [sortMode]="'single'" [tableStyle]="{ 'table-layout': 'fixed', width: '100%', overflow: 'scroll' }">
+    <p-table [value]="applications()" [sortMode]="'single'">
+        <!-- [tableStyle]="{ 'table-layout': 'fixed', width: '100%' }"> -->
         <ng-template #caption>
             <div class="caption">
                 <span class="text-xl font-bold">Applications</span>
@@ -18,7 +18,7 @@
                 <th pSortableColumn="status">
                     Status <p-sortIcon field="status" />
                 </th>
-                <th pSortableColumn="notes" style="max-width:250px">
+                <th pSortableColumn="notes" style="max-width: 250px">
                     Notes
                 </th>
                 <th>Is Remote?</th>
@@ -32,7 +32,7 @@
                 <td>{{ app.companyName }}</td>
                 <td>{{ app.position }}</td>
                 <td>{{ getStatusLabel(app.status)}}</td>
-                <td [pTooltip]="app.notes" class="ellipsis-cell">{{ app.notes }}</td>
+                <td [pTooltip]="app.notes"><span class="ellipsis-cell">{{ app.notes }}</span></td>
                 <td>{{ app.isRemote }}</td>
                 <td>{{ app.dateApplied | date:'short' }}</td>
             </tr>
