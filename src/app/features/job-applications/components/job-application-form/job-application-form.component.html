@@ -1,20 +1,22 @@
-<form [formGroup]="form" class="job-detail-grid">
-    <p-floatlabel variant="in" class="job-detail-row">
-        <input pInputText id="position" formControlName="position" autocomplete="off" />
-        <label for="position">Position</label>
-    </p-floatlabel>
+<form [formGroup]="form" class="job-detail-form">
+    <div class="job-row">
+        <p-floatlabel variant="in" class="item">
+            <input pInputText id="position" formControlName="position" autocomplete="off" style="width: 100%" />
+            <label for="position">Position</label>
+        </p-floatlabel>
 
-    <p-dropdown id="status" [options]="statusOptions" optionLabel="label" optionValue="value" formControlName="status"
-        placeholder="Select a status">
-    </p-dropdown>
-
-    <p-floatlabel variant="in" class="job-detail-row">
-        <textarea pInputTextarea id="notes" formControlName="notes" rows="4"></textarea>
-        <label for="notes">Notes</label>
-    </p-floatlabel>
-
-    <div class="job-detail-remote">
+        <p-dropdown id="status" [options]="statusOptions" optionLabel="label" optionValue="value"
+            formControlName="status" placeholder="Select a status" class="item">
+        </p-dropdown>
+    </div>
+    <div class="job-detail-remote-row">
         <p-checkbox formControlName="isRemote" binary="true" label="Remote?">Test</p-checkbox>
         <label for="ingredient1" class="ml-2"> Remote? </label>
     </div>
+    <p-floatlabel variant="in" class="job-row">
+        <textarea pInputTextarea id="notes" formControlName="notes" rows="4" class="item"></textarea>
+        <label for="notes">Notes</label>
+    </p-floatlabel>
+
+
 </form>
