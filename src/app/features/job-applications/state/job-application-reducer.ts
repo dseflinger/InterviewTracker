@@ -28,5 +28,9 @@ export const jobApplicationReducer = createReducer(
 
     on(JobApplicationActions.updateApplication, state => ({ ...state, loading: true })),
     on(JobApplicationActions.updateApplicationSuccess, (state, { updatedApplication }) => ({ ...state, loading: false, selectedApplication: updatedApplication })),
-    on(JobApplicationActions.updateApplicationFailure, (state) => ({ ...state, loading: false }))
+    on(JobApplicationActions.updateApplicationFailure, (state) => ({ ...state, loading: false })),
+
+    on(JobApplicationActions.createApplication, (state) => ({ ...state, loading: true })),
+    on(JobApplicationActions.createApplicationSuccess, (state) => ({ ...state, loading: false })),
+    on(JobApplicationActions.createApplicationFailure, (state) => ({ ...state, loading: false }))
 )
