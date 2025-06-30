@@ -1,43 +1,44 @@
-<p-table [value]="applications()" [resizableColumns]="true" [reorderableColumns]="true" [autoLayout]="true"
-    [sortMode]="'single'">
-    <ng-template #caption>
-        <div class="caption">
-            <span class="text-xl font-bold">Applications</span>
-        </div>
-    </ng-template>
-    <ng-template #header>
-        <tr>
+<div class="table-container">
 
-            <th pSortableColumn="companyName">
-                Company Name <p-sortIcon field="companyName" />
-            </th>
-            <th pSortableColumn="position">
-                Position <p-sortIcon field="position" />
-            </th>
-            <th pSortableColumn="status">
-                Status <p-sortIcon field="status" />
-            </th>
-            <th pSortableColumn="notes">
-                Notes <p-sortIcon field="notes" />
-            </th>
-            <th>Is Remote?</th>
-            <th pSortableColumn="dateApplied">
-                Date Applied <p-sortIcon field="dateApplied" />
-            </th>
-        </tr>
-    </ng-template>
-    <ng-template #body let-app>
-        <tr (click)="onRowSelect(app.id)" class="job-row">
-            <td>{{ app.companyName }}</td>
-            <td>{{ app.position }}</td>
-            <td>{{ getStatusLabel(app.status)}}</td>
-            <td>{{ app.notes }}</td>
-            <td>{{ app.isRemote }}</td>
-            <td>{{ app.dateApplied | date:'short' }}</td>
-        </tr>
-    </ng-template>
-</p-table>
-
+    <p-table [value]="applications()" [resizableColumns]="true" [reorderableColumns]="true" [autoLayout]="false"
+        [sortMode]="'single'" [tableStyle]="{ 'table-layout': 'fixed', width: '100%', overflow: 'scroll' }">
+        <ng-template #caption>
+            <div class="caption">
+                <span class="text-xl font-bold">Applications</span>
+            </div>
+        </ng-template>
+        <ng-template #header>
+            <tr>
+                <th pSortableColumn="companyName">
+                    Company Name <p-sortIcon field="companyName" />
+                </th>
+                <th pSortableColumn="position">
+                    Position <p-sortIcon field="position" />
+                </th>
+                <th pSortableColumn="status">
+                    Status <p-sortIcon field="status" />
+                </th>
+                <th pSortableColumn="notes" style="width:250px">
+                    Notes
+                </th>
+                <th>Is Remote?</th>
+                <th pSortableColumn="dateApplied">
+                    Date Applied <p-sortIcon field="dateApplied" />
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template #body let-app>
+            <tr (click)="onRowSelect(app.id)" class="job-row">
+                <td>{{ app.companyName }}</td>
+                <td>{{ app.position }}</td>
+                <td>{{ getStatusLabel(app.status)}}</td>
+                <td [pTooltip]="app.notes" class="ellipsis-cell">{{ app.notes }}</td>
+                <td>{{ app.isRemote }}</td>
+                <td>{{ app.dateApplied | date:'short' }}</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
 <!-- <p-table [value]="applications()" [sortMode]="'single'" [resizableColumns]="true">
     <ng-template #header>
         <tr>

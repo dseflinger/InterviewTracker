@@ -1,4 +1,4 @@
-import { Component, computed, inject, OnDestroy, OnInit, signal, Signal } from '@angular/core';
+import { Component, computed, ElementRef, inject, OnDestroy, OnInit, signal, Signal, ViewChild } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { JobApplicationActions } from '../../state/job-application-actions';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -13,14 +13,17 @@ import { effect } from '@angular/core';
 import { Actions, ofType } from '@ngrx/effects';
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
+import { AreYouSureDialogComponent } from "../../../../shared/components/are-you-sure-dialog/are-you-sure-dialog.component";
 
 @Component({
   selector: 'app-job-application-detail',
-  imports: [DatePipe, ButtonModule, JobApplicationFormComponent, InputTextModule, ReactiveFormsModule, FloatLabelModule],
+  imports: [DatePipe, ButtonModule, JobApplicationFormComponent, InputTextModule, ReactiveFormsModule, FloatLabelModule, AreYouSureDialogComponent],
   templateUrl: './job-application-detail.component.html',
   styleUrl: './job-application-detail.component.scss',
 })
 export class JobApplicationDetailComponent implements OnInit, OnDestroy {
+  @ViewChild('areYouSure') areYouSureDialog!: AreYouSureDialogComponent;
+
   private _store = inject(Store);
   private _actions = inject(Actions);
   private _router = inject(Router);
@@ -67,7 +70,13 @@ export class JobApplicationDetailComponent implements OnInit, OnDestroy {
   onDelete() {
     var id = this.jobId();
     if (!id) return;
-    this._store.dispatch(JobApplicationActions.deleteApplication({ id }))
+    this.areYouSureDialog.visible = true;
+  }
+
+  onConfirmedDelete() {
+    const id = this.jobId();
+    if (!id) return;
+    this._store.dispatch(JobApplicationActions.deleteApplication({ id }));
   }
 
   onEdit() {
@@ -98,3 +107,4 @@ export class JobApplicationDetailComponent implements OnInit, OnDestroy {
     }
   });
 }
+

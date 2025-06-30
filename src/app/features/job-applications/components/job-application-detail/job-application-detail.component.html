@@ -31,7 +31,7 @@
         <div class="job-detail-row">
             <label>Remote:</label>
             <span>{{ job()?.isRemote ? 'Yes' : 'No' }}</span>
-        </div>
+    </div>
         <div class="job-detail-row">
             <label>Date Applied:</label>
             <span>{{ job()?.dateApplied | date:'mediumDate' }}</span>
@@ -47,3 +47,5 @@
     <button pButton type="button" label="Update" class="update-button" (click)="onUpdate()"></button>
     }
 </div>
+
+<app-are-you-sure-dialog #areYouSure (confirmed)="onConfirmedDelete()"></app-are-you-sure-dialog>

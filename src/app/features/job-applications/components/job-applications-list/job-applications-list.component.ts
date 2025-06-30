@@ -6,10 +6,11 @@ import { selectSortedItems } from '../../state/job-application-selectors';
 import { CommonModule, DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { Status, StatusLabels } from '../../state/state';
+import { TooltipModule } from 'primeng/tooltip';
 
 @Component({
   selector: 'app-job-applications-list',
-  imports: [TableModule, DatePipe, CommonModule],
+  imports: [TableModule, DatePipe, CommonModule, TooltipModule],
   templateUrl: './job-applications-list.component.html',
   styleUrl: './job-applications-list.component.scss',
 })
