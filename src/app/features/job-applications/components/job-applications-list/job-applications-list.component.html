@@ -1,7 +1,6 @@
 <div class="table-container">
 
     <p-table [value]="applications()" [sortMode]="'single'">
-        <!-- [tableStyle]="{ 'table-layout': 'fixed', width: '100%' }"> -->
         <ng-template #caption>
             <div class="caption">
                 <span class="text-xl font-bold">Applications</span>
@@ -19,7 +18,7 @@
                     Status <p-sortIcon field="status" />
                 </th>
                 <th pSortableColumn="notes" style="max-width: 250px">
-                    Notes
+                    Notes <p-sortIcon field="notes" />
                 </th>
                 <th>Is Remote?</th>
                 <th pSortableColumn="dateApplied">

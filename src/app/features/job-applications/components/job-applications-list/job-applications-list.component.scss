@@ -7,34 +7,10 @@
     cursor: pointer;
 }
 
-// .ellipsis-cell {
-//     white-space: nowrap;
-//     overflow: hidden;
-//     text-overflow: ellipsis;
-//     max-width: 250px;
-//     display: inline-block;
-// }
-
 .ellipsis-cell {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     display: block;
     max-width: 250px;
-}
-
-.p-datatable-table {
-    table-layout: fixed !important;
-
-}
-
-.table-scroll-wrapper {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    width: 100%;
-}
-
-.table-container {
-    overflow-x: auto;
-    /* Enable horizontal scrolling */
 }
