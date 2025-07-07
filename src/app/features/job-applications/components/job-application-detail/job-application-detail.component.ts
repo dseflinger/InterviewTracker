@@ -8,7 +8,7 @@ import { DatePipe } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { JobApplicationFormComponent } from "../job-application-form/job-application-form.component";
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Status, UpdateApplication } from '../../state/state';
+import { Status, StatusLabels, UpdateApplication } from '../../state/state';
 import { effect } from '@angular/core';
 import { Actions, ofType } from '@ngrx/effects';
 import { InputTextModule } from 'primeng/inputtext';
@@ -29,6 +29,7 @@ export class JobApplicationDetailComponent implements OnInit, OnDestroy {
   private _router = inject(Router);
   private _subscriptions: Subscription[] = [];
 
+  statusLabels = StatusLabels;
   editMode = signal(false);
   constructor(private _route: ActivatedRoute) { }
 
@@ -91,6 +92,11 @@ export class JobApplicationDetailComponent implements OnInit, OnDestroy {
     if (!id) return;
 
     this._store.dispatch(JobApplicationActions.updateApplication({ id, updateApp }))
+  }
+
+  getStatusLabel(status: Status | undefined): string {
+    if (!status) return "";
+    return this.statusLabels[status];
   }
 
   patchEffect = effect(() => {

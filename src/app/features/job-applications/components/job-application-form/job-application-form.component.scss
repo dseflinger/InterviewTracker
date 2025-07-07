@@ -19,3 +19,12 @@
         display: flex;
         gap: 8px;
     }
+
+    .remote-label {
+        margin-right: 8px;
+    }
+
+    ::ng-deep .p-dropdown {
+        display: flex;
+        align-items: center;
+    }

@@ -26,12 +26,12 @@
         </div>
         <div class="job-detail-row">
             <label>Status:</label>
-            <span>{{ job()?.status }}</span>
+            <span>{{ getStatusLabel(job()?.status) }}</span>
         </div>
         <div class="job-detail-row">
             <label>Remote:</label>
             <span>{{ job()?.isRemote ? 'Yes' : 'No' }}</span>
-    </div>
+        </div>
         <div class="job-detail-row">
             <label>Date Applied:</label>
             <span>{{ job()?.dateApplied | date:'mediumDate' }}</span>
